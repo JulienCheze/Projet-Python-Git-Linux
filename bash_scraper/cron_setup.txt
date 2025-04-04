@@ -1,0 +1,1 @@
+* * * * * /home/juliencheze/projet-dashboard/bash_scraper/scraper.sh >> /home/juliencheze/projet-dashboard/bash_scraper/cron.log 2>&1
