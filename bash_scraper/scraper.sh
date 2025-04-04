@@ -13,3 +13,6 @@ timestamp=$(date "+%Y-%m-%d %H:%M:%S")
 
 #affichage valeur terminal
 echo "Val actuelle du CAC 40 : $valeur"
+#enregistrement dans un csv
+
+echo "$timestamp,$valeur" >> cac40.csv
