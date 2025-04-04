@@ -1,3 +1,5 @@
 #!/bin/bash
-URL="https://www.boursier.com/indices/cours/cac-40-FR0003500008,FR.html"
-curl -s "$URL" > page.html
+
+# page qu'n va  scraper
+URL="https://www.selexium.com/bourse/cac-40/"
+curl -s -A "Mozilla/5.0" "$URL" > page.html
