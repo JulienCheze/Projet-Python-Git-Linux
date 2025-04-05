@@ -1,0 +1,14 @@
+[Unit]
+Description=Service pour afficher l'évolution du CAC 40 en temps réel
+After=network.target
+
+[Service]
+User=juliencheze
+WorkingDirectory=/home/juliencheze/Projet-Python-Git-Linux/dash_app
+ExecStart=/home/juliencheze/Projet-Python-Git-Linux/dash_app/venv/bin/python3 /home/juliencheze/Projet-Python-Git-Linux/dash_app/app.py
+Restart=always
+Environment="PATH=/home/juliencheze/Projet-Python-Git-Linux/dash_app/venv/bin"
+Environment="VIRTUAL_ENV=/home/juliencheze/Projet-Python-Git-Linux/dash_app/venv"
+
+[Install]
+WantedBy=multi-user.target
