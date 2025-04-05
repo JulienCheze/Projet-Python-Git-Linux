@@ -1,0 +1,13 @@
+[Unit]
+Description= pour afficher l'évolution du prix du Bitcoin (BTC) en temps réel
+After=network.target
+
+[Service]
+User=juliencheze
+WorkingDirectory=/home/juliencheze/Projet-Python-Git-Linux/dash_app
+ExecStart=/usr/bin/python3 /home/juliencheze/Projet-Python-Git-Linux/dash_app/app.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
+

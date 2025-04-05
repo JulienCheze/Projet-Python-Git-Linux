@@ -1,18 +1,20 @@
 #!/bin/bash
 
-# page qu'on va scraper
-URL="https://www.selexium.com/bourse/cac-40/"
-curl -s -A "Mozilla/5.0" "$URL" > /home/juliencheze/Projet-Python-Git-Linux/bash_scraper/page.html
 
-# extrait valeur num cac 40
-valeur=$(grep -oP '(?<=<span class="mx-lg-2">)[0-9]+\.[0-9]+' /home/juliencheze/Projet-Python-Git-Linux/bash_scraper/page.html | head -1)
+#page qu'on va scraper
+URL="https://www.stelareum.io/currency/btc.html"
 
-# crea timestamp
+PAGE_PATH="/home/juliencheze/Projet-Python-Git-Linux/bash_scraper/page.html"
+CSV_PATH="/home/juliencheze/Projet-Python-Git-Linux/bash_scraper/btc.csv"
+
+curl -s -A "Mozilla/5.0" "$URL" > "$PAGE_PATH"
+#extraction valeur numerique
+valeur=$(grep '"price":' "$PAGE_PATH" | grep -oE '[0-9]+\.[0-9]+')
+#crea timestamp
 timestamp=$(date "+%Y-%m-%d %H:%M:%S")
+#affichage val terminak
+echo "Prix actuel du BTC : $valeur USD"
+#enregistrement dans le csv
 
-# affichage val terminal
-echo "Val actuelle du CAC 40 : $valeur"
-
-# enregistrement fichier CSV
-echo "$timestamp,$valeur" >> /home/juliencheze/Projet-Python-Git-Linux/bash_scraper/cac40.csv
+echo "$timestamp,$valeur" >> "$CSV_PATH"
 
