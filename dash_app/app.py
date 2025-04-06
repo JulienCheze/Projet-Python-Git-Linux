@@ -35,7 +35,13 @@ app.layout = html.Div([
         interval=5*60*1000,  # 5 minutes
         n_intervals=0
     )
-])
+], style={
+    'backgroundColor': '#1e1e1e',
+    'color': 'white',
+    'minHeight': '100vh',
+    'padding': '20px'
+})
+
 
 @app.callback(
     Output("graph-btc", "figure"),
@@ -48,13 +54,23 @@ def update(n):
     df_summary = read_summary()
 
     fig_btc = px.line(df, x="timestamp", y="value", title="Évolution du BTC")
+    fig_btc.update_layout(template="plotly_dark")
     fig_volatility = px.bar(df_summary, x="date", y="volatility", title="Volatilité journalière")
-
+    fig_volatility.update_layout(template="plotly_dark")
     table = dash_table.DataTable(
-        columns=[{"name": i, "id": i} for i in df_summary.columns],
-        data=df_summary.to_dict('records'),
-        style_table={'overflowX': 'auto'},
-        style_cell={'textAlign': 'center'}
+      columns=[{"name": i, "id": i} for i in df_summary.columns],
+      data=df_summary.to_dict('records'),
+      style_table={'overflowX': 'auto'},
+      style_cell={
+            'textAlign': 'center',
+            'backgroundColor': '#1e1e1e',
+            'color': 'white'
+        },
+      style_header={
+            'backgroundColor': '#111111',
+            'color': 'white',
+            'fontWeight': 'bold'
+        }
     )
 
     return fig_btc, fig_volatility, table
