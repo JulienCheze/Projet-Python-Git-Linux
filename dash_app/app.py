@@ -13,7 +13,7 @@ fig = px.line(df, x="timestamp", y="value", title="Évolution du cours du Bicoin
 
 app = Dash(__name__)
 app.layout = html.Div([
-    html.H1("dashboard Bitcoin - Prix en temps réel:"),
+    html.H1("Dashboard du Bitcoin - Prix en temps réel:"),
     dcc.Graph(id="graph-btc", figure=fig),
     dcc.Interval(
         id="interval-update",
