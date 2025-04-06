@@ -4,7 +4,14 @@ import plotly.express as px
 from dash.dependencies import Input, Output
 
 def read_data():
-    return pd.read_csv("../bash_scraper/btc.csv", names=["timestamp", "value"])
+    df = pd.read_csv("../bash_scraper/btc.csv", names=["timestamp", "value"])
+    df = df.dropna(subset=["timestamp", "value"])
+    df["timestamp"] = pd.to_datetime(df["timestamp"], errors="coerce") + pd.Timedelta(hours=2)
+    df = df.dropna(subset=["timestamp"])
+    df["value"] = pd.to_numeric(df["value"], errors="coerce")
+    df = df.dropna(subset=["value"])
+    return df
+
 
 def read_summary():
     return pd.read_csv("../bash_scraper/daily_summary.csv")
