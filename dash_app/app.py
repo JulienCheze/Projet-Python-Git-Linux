@@ -55,7 +55,7 @@ def update(n):
 
     fig_btc = px.line(df, x="timestamp", y="value", title="Évolution du BTC")
     fig_btc.update_layout(template="plotly_dark")
-    fig_volatility = px.bar(df_summary, x="date", y="volatility", title="Volatilité journalière")
+    fig_volatility = px.bar(df_summary, x="date", y="vol_log", title="Volatilité journalière")
     fig_volatility.update_layout(template="plotly_dark")
     table = dash_table.DataTable(
       columns=[{"name": i, "id": i} for i in df_summary.columns],
